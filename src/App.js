@@ -1,5 +1,7 @@
 import React from "react";
 import getBalance from "./getTokenBalance";
+import isEligibleToConvert from "./isEligibleToConvert";
+import migrateTokens from "./migrateTokens";
 import { useWallet, UseWalletProvider } from "use-wallet";
 
 function App() {
@@ -7,10 +9,15 @@ function App() {
   const blockNumber = wallet.getBlockNumber();
 
   const [mbyoldbal, setMbyoldbal] = React.useState(null);
+  const [eligibleToConvert, setEligibleToConvert] = React.useState(null);
+
 
   if (wallet.status === "connected") {
      getBalance(wallet.account).then(function (result) {
          setMbyoldbal(result);
+     });
+     isEligibleToConvert(wallet.account).then(function (result) {
+         setEligibleToConvert(result);
      });
   }
 
@@ -24,8 +31,12 @@ function App() {
           <div>BNB Balance: {wallet.balance / (10 ** 18)}</div>
           <div>Block Num: {wallet.getBlockNumber()}</div>
           <div>MBY Balance: {mbyoldbal / (10 ** 9)}</div>
+          <div>Are you eligible to swap (example read function => now maps to isBlacklisted on tigertoken): {eligibleToConvert}</div>
           <button onClick={() => wallet.reset()}>
             Let me go and diskonnekt
+          </button>
+          <button onClick={() => migrateTokens(wallet.account)}>
+            migrate your TOOOOOOKENSSSSSSS
           </button>
         </div>
       ) : (
@@ -52,8 +63,8 @@ export default () => (
       portis: { dAppId: "my-dapp-id-123-xyz" },
       walletconnect: {
         rpc: {
-          1: "https://mainnet.infura.io/v3/a0d8c94ba9a946daa5ee149e52fa5ff1",
-          4: "https://rinkeby.infura.io/v3/a0d8c94ba9a946daa5ee149e52fa5ff1",
+//          1: "https://mainnet.infura.io/v3/a0d8c94ba9a946daa5ee149e52fa5ff1",
+//          4: "https://rinkeby.infura.io/v3/a0d8c94ba9a946daa5ee149e52fa5ff1",
           56: "https://bsc-dataseed.binance.org/"
         },
         bridge: "https://bridge.walletconnect.org",
