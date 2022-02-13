@@ -4,7 +4,8 @@ const provider = "https://bsc-dataseed.binance.org/";
 
 const Web3Client = new Web3(new Web3.providers.HttpProvider(provider));
 
-let mbyOldTokenAddress = "0x98bc4773bd1e9a53631fd6028e06cd6cd17b7401";
+// let mbyOldTokenAddress = "0x98bc4773bd1e9a53631fd6028e06cd6cd17b7401";
+let mbyOldTokenAddress = "0x087b005B57C286886e4c6175822929ea42832719";
 
 // The minimum ABI required to get the ERC20 Token balance
 const minABI = [
@@ -26,4 +27,9 @@ async function getBalance(walletAddress) {
   const format = Web3Client.utils.fromWei(result);
 
   console.log(format);
+
+  return format;
 }
+
+
+export default getBalance;

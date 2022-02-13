@@ -6,14 +6,24 @@ function App() {
   const wallet = useWallet();
   const blockNumber = wallet.getBlockNumber();
 
+  const [mbyoldbal, setMbyoldbal] = React.useState(null);
+
+  if (wallet.status === "connected") {
+     getBalance(wallet.account).then(function (result) {
+         setMbyoldbal(result);
+     });
+  }
+
+
   return (
     <>
       <h1>Manki ToOOooken SwAPpEr</h1>
       {wallet.status === "connected" ? (
         <div>
           <div>Wallet address: {wallet.account}</div>
-          <div>MBY Balance: {wallet.balance}</div>
+          <div>BNB Balance: {wallet.balance}</div>
           <div>Block Num: {wallet.getBlockNumber()}</div>
+          <div>MBY Balance: {mbyoldbal}</div>
           <button onClick={() => wallet.reset()}>
             Let me go and diskonnekt
           </button>
