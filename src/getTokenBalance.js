@@ -24,7 +24,9 @@ const contract = new Web3Client.eth.Contract(minABI, mbyOldTokenAddress);
 async function getBalance(walletAddress) {
   const result = await contract.methods.balanceOf(walletAddress).call();
 
-  const format = Web3Client.utils.fromWei(result);
+//  const format = Web3Client.utils.fromWei(result);
+
+  const format = result;
 
   console.log(format);
 

@@ -17,13 +17,13 @@ function App() {
 
   return (
     <>
-      <h1>Manki ToOOooken SwAPpEr</h1>
+      <h1>Manki ToOOooken SwAPpErrRrRrRR</h1>
       {wallet.status === "connected" ? (
         <div>
           <div>Wallet address: {wallet.account}</div>
-          <div>BNB Balance: {wallet.balance}</div>
+          <div>BNB Balance: {wallet.balance / (10 ** 18)}</div>
           <div>Block Num: {wallet.getBlockNumber()}</div>
-          <div>MBY Balance: {mbyoldbal}</div>
+          <div>MBY Balance: {mbyoldbal / (10 ** 9)}</div>
           <button onClick={() => wallet.reset()}>
             Let me go and diskonnekt
           </button>
@@ -33,6 +33,9 @@ function App() {
           Connect:
           <button onClick={() => wallet.connect()}>
             Click to connect your wallet betch
+          </button>
+          <button onClick={() => wallet.connect('walletconnect')}>
+            WALLETCONNECT for those gay betchez
           </button>
         </div>
       )}
