@@ -1,4 +1,5 @@
 import React from "react";
+import getBalance from "./getTokenBalance";
 import { useWallet, UseWalletProvider } from "use-wallet";
 
 function App() {
@@ -7,19 +8,21 @@ function App() {
 
   return (
     <>
-      <h1>Wallet</h1>
+      <h1>Manki ToOOooken SwAPpEr</h1>
       {wallet.status === "connected" ? (
         <div>
-          <div>Account: {wallet.account}</div>
-          <div>Balance: {wallet.balance}</div>
-          <button onClick={() => wallet.reset()}>disconnect</button>
+          <div>Wallet address: {wallet.account}</div>
+          <div>MBY Balance: {wallet.balance}</div>
+          <div>Block Num: {wallet.getBlockNumber()}</div>
+          <button onClick={() => wallet.reset()}>
+            Let me go and diskonnekt
+          </button>
         </div>
       ) : (
         <div>
           Connect:
-          <button onClick={() => wallet.connect()}>MetaMask</button>
-          <button onClick={() => wallet.connect("walletconnect")}>
-            WalletConnect
+          <button onClick={() => wallet.connect()}>
+            Click to connect your wallet betch
           </button>
         </div>
       )}
